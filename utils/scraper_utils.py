@@ -10,7 +10,7 @@ from crawl4ai import (
     LLMExtractionStrategy,
 )
 
-from models.venue import Venue
+from data_structures.venue import Venue
 from utils.data_utils import is_complete_venue, is_duplicate_venue
 
 
