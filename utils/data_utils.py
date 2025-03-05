@@ -1,6 +1,6 @@
 import csv
 
-from data_structures.venue import Venue
+from schemas.venue import Venue
 
 
 def is_duplicate_venue(venue_name: str, seen_names: set) -> bool:

@@ -13,3 +13,5 @@ class Venue(BaseModel):
     rating: float
     reviews: int
     description: str
+    link: str
+    contact: str

@@ -10,7 +10,7 @@ from crawl4ai import (
     LLMExtractionStrategy,
 )
 
-from data_structures.venue import Venue
+from schemas.venue import Venue
 from utils.data_utils import is_complete_venue, is_duplicate_venue
 
 
@@ -37,6 +37,9 @@ def get_llm_strategy() -> LLMExtractionStrategy:
         LLMExtractionStrategy: The settings for how to extract data using LLM.
     """
     # https://docs.crawl4ai.com/api/strategies/#llmextractionstrategy
+    
+    ## provider="ollama/llama3.1", 
+    ## provider="gpt-4o-mini", 
     return LLMExtractionStrategy(
         provider="groq/deepseek-r1-distill-llama-70b",  # Name of the LLM provider
         api_token=os.getenv("GROQ_API_KEY"),  # API token for authentication
@@ -44,13 +47,11 @@ def get_llm_strategy() -> LLMExtractionStrategy:
         extraction_type="schema",  # Type of extraction to perform
         instruction=(
             "Extract all venue objects with 'name', 'location', 'price', 'capacity', "
-            "'rating', 'reviews', and a 1 sentence description of the venue from the "
-            "following content."
+            "'rating', 'reviews', 'href', 'contact', and a 1 sentence description of the venue from the following content."
         ),  # Instructions for the LLM
         input_format="markdown",  # Format of the input content
         verbose=True,  # Enable verbose logging
     )
-
 
 async def check_no_results(
     crawler: AsyncWebCrawler,
